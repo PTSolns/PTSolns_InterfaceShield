@@ -8,7 +8,7 @@ The Interface-Shield allows the user to interact with their project visually and
 - Onboard main power ON/OFF
 - 1602 LCD with backlight
 - Turn ON/OFF LCD backlight via software
-- Two ways to DIM LCD backlight:
+- Two ways to dim LCD backlight:
   1.  PWM digital pin D9 on microcontroller
   2.  Onboard potentiometer
 - Onboard LCD contrast potentiometer
