@@ -14,7 +14,7 @@
 // - "D2" leave unconnected -> this is used to send interrupt to D2 on uC. See example "Interrupt" for this feature.
 // NOTE: For this example, the only important setting is "PWR".
 
-#include "PTSolns_InterfaceShield.h"
+#include <PTSolns_InterfaceShield.h>
 
 Interface interface;
 

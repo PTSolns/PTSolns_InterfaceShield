@@ -15,7 +15,7 @@
 // - "LCD Pot" connect -> this uses the onboard potentiometer to adjust the LCD backlight brightness. Turn the pot to adjust brightness as desired.
 // - "D2" connected -> this is used to send interrupt to D2 on uC. 
 
-#include "PTSolns_InterfaceShield.h"
+#include <PTSolns_InterfaceShield.h>
 
 Interface interface;
 
