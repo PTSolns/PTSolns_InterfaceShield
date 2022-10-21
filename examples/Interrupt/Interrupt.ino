@@ -1,5 +1,5 @@
 // EXAMPLE: Interrupt
-// Last update: Oct 20, 2022
+// Last update: Oct 21, 2022
 // contact@PTSolns.com
 //
 // DESCRIPTION
@@ -10,25 +10,22 @@
 // HARDWARE CONFIGURATION
 // Use Uno R3, Leonardo, Mega, or any other similar uC operating on 5V logic level and has same pinout.
 // Onboard selection pins of the Interface-Shield:
-// - "PWR" connect -> this powers ON the entire shield
-// - "LCD D9" leave unconnected -> this can dim the LCD backlight via digital pin D9. See example "LCD Backlight Dimming" for this feature.
-// - "LCD Pot" connect -> this uses the onboard potentiometer to adjust the LCD backlight brightness. Turn the pot to adjust brightness as desired.
-// - "D2" connected -> this is used to send interrupt to D2 on uC. 
+// - "PWR" ........ connect -> powers ON the entire shield
+// - "LCD D9" not connected -> can dim the LCD backlight via digital pin D9. See example "LCD Backlight Dimming" for this feature.
+// - "LCD Pot" .... connect -> uses the onboard potentiometer to adjust the LCD backlight brightness. Turn the pot to adjust brightness as desired.
+// - "D2" ....... connected -> used to send interrupt to D2 on uC.
 
-#include <PTSolns_InterfaceShield.h>
+#include "PTSolns_InterfaceShield.h"
 
 Interface interface;
 
 const byte interruptPin = 2; // This pin is fixed in the hardware of the Interface-Shield.
 
 void setup(){
-  interface.begin();         // Use the default address by leaving argument blank (0x27)
-  interface.backlight(ON);   // Turn ON LCD backlight.
-  interface.print("Testing Interrupt");
-
+  interface.begin(); // Use the default address by leaving argument blank (0x27). See "IO Expander Address" example for details.
   interface.debounce(ON,100); // Turn ON debouncing and set debouncing time to 100ms. See example "Debouncing" for more details on this.
-  
   interface.interrupt(HIGH); // This pulls up the internal uC resistor for pin D2. Same as pinMode(interruptPin, INPUT_PULLUP).
+  interface.backlight(OFF); // We don't need the display for this example, so we turn off the backlight.
   attachInterrupt(digitalPinToInterrupt(interruptPin), func, FALLING); // We are detecting a FALLING state. 
   Serial.begin(9600);
 }
