@@ -24,3 +24,4 @@ createChar         KEYWORD2
 setCursor          KEYWORD2
 write              KEYWORD2
 command            KEYWORD2
+setClock           KEYWORD2
