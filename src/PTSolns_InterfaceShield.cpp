@@ -303,6 +303,11 @@ uint8_t Interface::begin(uint8_t addr)
     return InitialSetup();
 }
 
+void Interface::setClock(unsigned long speed)
+{
+    Wire.setClock(speed);
+}
+
 uint8_t Interface::backlight(bool state)
 {
     int err = 0;
@@ -377,6 +382,7 @@ uint8_t Interface::InitialSetup()
     err += ExpanderPinMode(14, INPUT);
     err += ExpanderPinMode(15, INPUT);
     
+    setClock(100000L);
     init(1, 0, 1, 2, 4, 5, 6, 7, 0, 0, 0, 0);
     beginLCD(16, 2);
     return (err > 0) * 1;
