@@ -114,7 +114,7 @@ class Interface : public Print
     bool digitalRead(uint8_t pin);
     void debounce(bool enabled, int ms);
     void debounce(bool enabled);
-
+    void setClock(unsigned long speed);
 
     void clear();
     void home();
