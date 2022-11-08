@@ -13,10 +13,11 @@ The Interface-Shield allows the user to interact with their project visually and
   2.  Onboard potentiometer
 - Onboard LCD contrast potentiometer
 - Four programmable LEDs
-- Four programmable push buttons with RC debouncing filters (software debouncing also available)
+- Four programmable push buttons with RC debouncing filters (software debouncing also available, see debouncing example)
 - Footprints on the back of the PCB for optional SMD RC debouncing filter for each of the push buttons
 - Output interrupt pin (if enabled, connected to pin D2 on microcontroller)
 - Eight available addresses, with address legend printed on back of PCB
+- Large I2C testing pads for oscilloscope connection
 
 Various examples are included in this package. For any comments or questions please contact us at contact@PTSolns.com
 
