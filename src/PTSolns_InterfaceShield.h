@@ -105,7 +105,7 @@ class Interface : public Print
 
     public:
     
-    
+    Interface();
     uint8_t begin();
     uint8_t begin(uint8_t addr);
     uint8_t backlight(bool state);
