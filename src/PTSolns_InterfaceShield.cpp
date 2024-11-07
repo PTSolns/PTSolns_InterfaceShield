@@ -381,6 +381,7 @@ void Interface::debounce(bool state)
 
 uint8_t Interface::InitialSetup()
 {
+    Wire.begin();
     int err = 0;
     err += ExpanderPinMode(8,  OUTPUT);
     err += ExpanderPinMode(9,  OUTPUT);

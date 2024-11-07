@@ -144,7 +144,7 @@ class Interface : public Print
 
     unsigned long btnTimes[4] = {0, 0, 0, 0};
     bool btnStates[4] = {LOW, LOW, LOW, LOW};
-    int debounceTime = 100;
+    unsigned long debounceTime = 100;
     bool debounceEnabled = false;
 
     union Ports 
