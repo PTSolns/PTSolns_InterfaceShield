@@ -1,6 +1,6 @@
 # PTSolns Interface-Shield
 
-Library for PTSolns Interface-Shield
+Library for [PTSolns Interface-Shield](https://ptsolns.com/products/interface-shield)
 
 The Interface-Shield allows the user to interact with their project visually and physically in an easy-to-use shield. The shield offers an LCD with four programmable push buttons, four programmable LEDs, an interrupt pin and various configuration modes. The following outlines the key features of the Interface-Shield:
 
@@ -19,7 +19,7 @@ The Interface-Shield allows the user to interact with their project visually and
 - Eight available addresses, with address legend printed on back of PCB
 - Large I2C testing pads for oscilloscope connection
 
-Various examples are included in this package. For any comments or questions please contact us at contact@PTSolns.com
+Various examples are included in this package. For any comments or questions please [Contact Us](https://ptsolns.com/pages/contact)
 
 ## Limitations
 We realize that nothing is perfect. While we try to improve on the following limitations, we feel it is responsible to inform the user of known limitations.
