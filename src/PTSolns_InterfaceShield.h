@@ -1,6 +1,6 @@
 #ifndef PTSolns_InterfaceShield_h
 #define PTSolns_InterfaceShield_h
-#endif
+
 #include <Arduino.h>
 #include <Wire.h>
 #include <inttypes.h>
@@ -55,14 +55,12 @@
 #define B3 2
 #define B4 3
 
-#define ON 1
+#define ON  1
 #define OFF 0
 
-
-
-namespace Reg 
+namespace Reg
 {
-    enum : uint8_t 
+    enum : uint8_t
     {
         INPUT_PORT_0,
         INPUT_PORT_1,
@@ -75,36 +73,36 @@ namespace Reg
     };
 }
 
-namespace Port 
+namespace Port
 {
-    enum Port : uint8_t 
-    {P00, P01, P02, P03, P04, P05, P06, P07, P10, P11, P12, P13, P14, P15, P16, P17,};
-}  // namespace Port
+    enum Port : uint8_t
+    {
+        P00, P01, P02, P03, P04, P05, P06, P07,
+        P10, P11, P12, P13, P14, P15, P16, P17,
+    };
+}
 
-namespace Level 
+namespace Level
 {
     enum Level : uint8_t { L, H };
     enum LevelAll : uint16_t { L_ALL = 0x0000, H_ALL = 0xFFFF };
-}  // namespace Level
+}
 
-namespace Polarity 
+namespace Polarity
 {
     enum Polarity : uint8_t { ORIGINAL, INVERTED };
     enum PolarityAll : uint16_t { ORIGINAL_ALL = 0x0000, INVERTED_ALL = 0xFFFF };
-}  // namespace Polarity
+}
 
-namespace Direction 
+namespace Direction
 {
     enum Direction : uint8_t { OUT, IN };
     enum DirectionAll : uint16_t { OUT_ALL = 0x0000, IN_ALL = 0xFFFF };
-}  // namespace Direction
-
+}
 
 class Interface : public Print
 {
-
-    public:
-    
+public:
     Interface();
     uint8_t begin();
     uint8_t begin(uint8_t addr);
@@ -133,37 +131,34 @@ class Interface : public Print
 
     void setRowOffsets(int row1, int row2, int row3, int row4);
     void createChar(uint8_t, uint8_t[]);
-    void setCursor(uint8_t, uint8_t); 
+    void setCursor(uint8_t, uint8_t);
     virtual size_t write(uint8_t);
     void command(uint8_t);
 
     using Print::write;
-    
 
-    private:
-
-    unsigned long btnTimes[4] = {0, 0, 0, 0};
-    bool btnStates[4] = {LOW, LOW, LOW, LOW};
+private:
+    unsigned long btnTimes[4] = { 0, 0, 0, 0 };
+    bool          btnStates[4] = { LOW, LOW, LOW, LOW };
     unsigned long debounceTime = 100;
-    bool debounceEnabled = false;
+    bool          debounceEnabled = false;
 
-    union Ports 
+    union Ports
     {
         uint16_t w;
-        uint8_t b[2];
+        uint8_t  b[2];
     };
 
     uint8_t addr = 0x27;
-    Ports input {0x0000};
-    Ports output {0xFFFF};
-    Ports pol {0x0000};
-    Ports dir {0xFFFF};
-    uint8_t status {0x00};
-    
-    
-    uint8_t _rs_pin; // LOW: command. HIGH: character.
-    uint8_t _rw_pin; // LOW: write to LCD. HIGH: read from LCD.
-    uint8_t _enable_pin; // activated by a HIGH pulse.
+    Ports   input{ 0x0000 };
+    Ports   output{ 0xFFFF };
+    Ports   pol{ 0x0000 };
+    Ports   dir{ 0xFFFF };
+    uint8_t status{ 0x00 };
+
+    uint8_t _rs_pin;
+    uint8_t _rw_pin;
+    uint8_t _enable_pin;
     uint8_t _data_pins[8];
 
     uint8_t _displayfunction;
@@ -174,30 +169,27 @@ class Interface : public Print
 
     uint8_t _numlines;
     uint8_t _row_offsets[4];
-    
-    
-    Level::Level read(const Port::Port port) 
+
+    Level::Level read(const Port::Port port)
     {
         uint16_t v = read();
         return (v & (1 << port)) ? Level::H : Level::L;
     }
-    
-    
-    bool write_impl();
-    bool polarity_impl();
-    bool direction_impl();
+
+    bool   write_impl();
+    bool   polarity_impl();
+    bool   direction_impl();
 
     int8_t read_bytes(const uint8_t dev, const uint8_t reg, uint8_t* data, const uint8_t size);
-    bool write_bytes(const uint8_t dev, const uint8_t reg, const uint8_t* data, const uint8_t size);
-    
+    bool   write_bytes(const uint8_t dev, const uint8_t reg, const uint8_t* data, const uint8_t size);
+
     void send(uint8_t, uint8_t);
     void write4bits(uint8_t);
     void write8bits(uint8_t);
     void pulseEnable();
-    
-    
-    uint8_t InitialSetup();    
-    bool ExpanderPinMode(uint8_t pin, uint8_t mode);    
+
+    uint8_t InitialSetup();
+    bool    ExpanderPinMode(uint8_t pin, uint8_t mode);
     uint8_t PinWrite(uint8_t pin, bool value);
     uint16_t read();
 
@@ -209,15 +201,12 @@ class Interface : public Print
 
     bool direction(const uint16_t value);
     bool direction(const Port::Port port, const Direction::Direction dir);
-    
-    void init(uint8_t fourbitmode, uint8_t rs, uint8_t rw, uint8_t enable,
-	    uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3,
-	    uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
-    
-    void beginLCD(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
 
-    
-    
-    
+    void init(uint8_t fourbitmode, uint8_t rs, uint8_t rw, uint8_t enable,
+        uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3,
+        uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7);
+
+    void beginLCD(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
 };
 
+#endif
